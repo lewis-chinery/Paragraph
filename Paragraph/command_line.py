@@ -59,7 +59,7 @@ def main():
     saved_model_path = args.weights
     
     # paths used in example
-    root_dir = "/".join(os.path.dirname(os.path.realpath(__file__)).split("/")[:-5])
+    root_dir = os.path.abspath(os.curdir)
     src_dir = os.path.join(root_dir, "Paragraph")
     example_dir = os.path.join(root_dir, "example")
     trained_model_path = os.path.join(root_dir, "trained_model")
