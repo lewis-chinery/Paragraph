@@ -13,7 +13,11 @@ To download and install the latest version from github:
 git clone https://github.com/oxpig/Paragraph.git
 cd Paragraph/
 pip install .
+source paragraph_pip_env/bin/activate
 ```
+
+If you are having issues installing, try upgrading pip: *pip install --upgrade pip*
+
 
 
 ## Usage
