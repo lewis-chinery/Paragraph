@@ -1,2 +1,6 @@
 *__pycache__*
 *ipynb_checkpoints*
+Paragraph.egg-info/
+build/
+dist/
+paragraph_pip_env/
