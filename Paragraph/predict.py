@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 from torch.utils.data import DataLoader
 
-from dataset import ParagraphDataset
-from model import EGNN_Model
+from Paragraph.dataset import ParagraphDataset
+from Paragraph.model import EGNN_Model
 
 
 def get_dataloader(pdb_H_L_csv, pdb_folder_path, batch_size=1):

@@ -6,7 +6,7 @@ from torch.utils.data import Dataset
 import re
 from scipy.spatial.distance import cdist
 
-from utils import *
+from Paragraph.utils import *
 
 
 # default values using in training

@@ -1,8 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from EGNN import EGNN
 import numpy as np
+
+from Paragraph.EGNN import EGNN
 
 
 class EGNN_Model(nn.Module):
