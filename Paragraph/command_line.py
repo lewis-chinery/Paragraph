@@ -58,11 +58,17 @@ def main():
     out_path = args.out_path
     saved_model_path = args.weights
     
+#     # paths used in example
+#     root_dir = os.path.abspath(os.curdir)
+#     print(os.path.abspath(os.curdir))
+#     src_dir = os.path.join(root_dir, "Paragraph")
+#     example_dir = os.path.join(root_dir, "example")
+#     trained_model_path = os.path.join(root_dir, "trained_model")
+
     # paths used in example
-    root_dir = os.path.abspath(os.curdir)
-    src_dir = os.path.join(root_dir, "Paragraph")
-    example_dir = os.path.join(root_dir, "example")
-    trained_model_path = os.path.join(root_dir, "trained_model")
+    src_dir = os.path.dirname(__file__)
+    example_dir = os.path.join(src_dir, "example")
+    trained_model_path = os.path.join(src_dir, "trained_model")
     
     # use pre-trained weights if no additonal ones given
     saved_model_path = os.path.join(trained_model_path, "pretrained_weights.pt") if args.weights is None else args.weights
