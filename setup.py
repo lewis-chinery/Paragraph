@@ -1,5 +1,6 @@
 from setuptools import setup, find_packages
 
+
 setup(
     name='Paragraph',
     version='1.0.0',
@@ -9,6 +10,7 @@ setup(
     long_description_content_type='text/markdown',
     maintainer_email='lewis.chinery@dtc.ox.ac.uk',
     include_package_data=True,
+    package_data={'': ['trained_model/*', 'example/*', 'example/pdbs/*']},
     packages=find_packages(include=('Paragraph', 'Paragraph.*')),
     entry_points={'console_scripts': ['Paragraph=Paragraph.command_line:main']},
     install_requires=[
