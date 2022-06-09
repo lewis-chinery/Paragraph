@@ -10,10 +10,16 @@ The development of new vaccines and antibody therapeutics typically takes severa
 To download and install the latest version from github:
 
 ```
+# clone the repo
 git clone https://github.com/oxpig/Paragraph.git
 cd Paragraph/
-pip install .
+
+# create your virtual env e.g.
+python3 -m venv paragraph_pip_env
 source paragraph_pip_env/bin/activate
+
+# install
+pip install .
 ```
 
 If you are having issues installing, try upgrading pip: *pip install --upgrade pip*
