@@ -49,7 +49,8 @@ class ParagraphDataset(Dataset):
         AAs = ['' if AA is np.nan else AA for AA in df_CDR["AA"].values.tolist()]
         AtomNum = ['' if num is np.nan else num for num in df_CDR["Atom_Num"].values.tolist()]
         chain = df_CDR["Chain"].values.tolist()
-        
+        chain_type = ["H" if ID == H_id else "L" for ID in chain]
+
         # catch 'None' values and convert to string - unable to have None values in batches
         # this happens when there is only one string present
         chain = [str(chain_id) for chain_id in chain]
@@ -57,7 +58,7 @@ class ParagraphDataset(Dataset):
         x = ['' if x is np.nan else x for x in df_CDR["x"].values.tolist()]
         y = ['' if y is np.nan else y for y in df_CDR["y"].values.tolist()]
         z = ['' if z is np.nan else z for z in df_CDR["z"].values.tolist()]
-        extras = (pdb_code, AAs, AtomNum, chain, IMGT, x, y, z)
+        extras = (pdb_code, AAs, AtomNum, chain, chain_type, IMGT, x, y, z)
 
         return graph, extras
 

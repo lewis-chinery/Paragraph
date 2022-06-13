@@ -23,7 +23,7 @@ def evaluate_model(model, dataloader, device):
     '''
     
     # loop over batches in test set
-    for _, ((feats, coors, edges), (pdb_code, AAs, AtomNum, chain, IMGT, x, y, z)) in enumerate(dataloader):
+    for _, ((feats, coors, edges), (pdb_code, AAs, AtomNum, chain, chain_type, IMGT, x, y, z)) in enumerate(dataloader):
 
         feats = feats.to(device)
         coors = coors.to(device)
@@ -39,10 +39,11 @@ def evaluate_model(model, dataloader, device):
         for i in range(num_atoms):
             for j in range(num_complexes):
                 row = [pdb_code[j],
-                       AAs[i][j],
-                       AtomNum[i][j],
+                       chain_type[i][j],
                        chain[i][j],
                        IMGT[i][j],
+                       AAs[i][j],
+                       AtomNum[i][j],
                        x[i][j],
                        y[i][j],
                        z[i][j],
@@ -54,7 +55,7 @@ def evaluate_model(model, dataloader, device):
                     
     # convert ndarray to df for easier viewing
     detailed_record_df = pd.DataFrame(detailed_record,
-                                      columns=["pdb", "AA", "Atom_Num", "Chain", "IMGT", "x", "y", "z", "pred"])
+                                      columns=["pdb", "chain_type", "chain_id", "IMGT", "AA", "atom_num", "x", "y", "z", "pred"])
 
     # remove missing residues from results
     detailed_record_df = detailed_record_df[detailed_record_df["AA"] != ""].reset_index(drop=True)
