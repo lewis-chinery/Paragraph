@@ -22,18 +22,20 @@ source paragraph_pip_env/bin/activate
 pip install .
 ```
 
-If you are having issues installing, try upgrading pip: *pip install --upgrade pip*
+If you are having issues installing, try upgrading pip: *pip install --upgrade pip*.
+
+Paragraph uses Python v3.8.3.
 
 
 
 ## Usage
 
-To predict the paratopes of your crystal or model antibody structures using the command line:
+To predict the paratopes of your crystal or model antibody structures using the command line, use a command similar to the below.
 
 ```
-Paragraph --pdb_H_L_csv     /path/to/key.csv
-          --pdb_folder_path /path/to/pdb/files/
-          --out_path        /path/to/saved/predictions.csv
+Paragraph --pdb_H_L_csv     /your/abspath/to/Paragraph/Paragraph/example/pdb_H_L_key.csv
+          --pdb_folder_path /your/abspath/to/Paragraph/Paragraph/example/pdbs
+          --out_path        /your/abspath/to/desired/save/location/of/predictions.csv
 ```
 
 An example jupyter notebook is provided for those wishing to integrate Paragraph into their python workflow. Examples of correctly formatted input data are also provided. PDB files should be IMGT numbered.
