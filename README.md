@@ -42,6 +42,8 @@ An example jupyter notebook is provided for those wishing to integrate Paragraph
 
 Paragraph outputs a csv file containing predicted probabilities for each residue belonging to the paratope. The output csv is formatted as below. The atom number and 3D coordinates are of the C-alpha atoms for each residue.
 
+In order to recapitulate the true number of binding residues observed in the CDR loops plus two extra residues on either end, we recommend using a classifier cut-off of 0.734 on Paragraph's predictions.
+
 <div align="center">
 
 | pdb | chain_type | chain_id | IMGT | AA | atom_num | x | y | z | pred |
