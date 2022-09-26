@@ -38,6 +38,15 @@ Paragraph --pdb_H_L_csv     /your/abspath/to/Paragraph/Paragraph/example/pdb_H_L
           --out_path        /your/abspath/to/desired/save/location/of/predictions.csv
 ```
 
+When trained on paired data, it is expected that Paragraph learns information pertinent to both the heavy and light chains. To ensure Paragraph's viability when only one chain is available, Paragraph has also been trained on only heavy and only light chains. These single chain weights can be used with the appropriate flag.
+
+```
+Paragraph --pdb_H_L_csv     /your/abspath/to/Paragraph/Paragraph/example/pdb_H_L_key.csv  # with L ids removed
+          --pdb_folder_path /your/abspath/to/Paragraph/Paragraph/example/pdbs
+          --out_path        /your/abspath/to/desired/save/location/of/predictions.csv
+          --heavy
+```
+
 An example jupyter notebook is provided for those wishing to integrate Paragraph into their python workflow. Examples of correctly formatted input data are also provided. PDB files should be IMGT numbered.
 
 Paragraph outputs a csv file containing predicted probabilities for each residue belonging to the paratope. The output csv is formatted as below. The atom number and 3D coordinates are of the C-alpha atoms for each residue.
