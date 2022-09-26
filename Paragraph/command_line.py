@@ -16,10 +16,16 @@ Predicitons take approximately 0.1s per structure
 Requirements:
  - torch, scipy, einops, pandas, numpy
  
-e.g.
+e.g. paired data:
  - Paragraph --pdb_H_L_csv     /path/to/key.csv
              --pdb_folder_path /path/to/pdb/files/
              --out_path        /path/to/saved/predictions.csv
+
+e.g. heavy chain data only:
+ - Paragraph --pdb_H_L_csv     /path/to/key/with/no/light/chains.csv
+             --pdb_folder_path /path/to/pdb/files/
+             --out_path        /path/to/saved/predictions.csv
+             --heavy
 
 '''
 
@@ -32,12 +38,22 @@ Contact: opig@stats.ox.ac.uk
 
 parser = argparse.ArgumentParser(prog="Paragraph", description=description, epilog=epilogue,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-parser.add_argument("-e", "--example", help="run Paragraph using default weights on example data", action='store_true', default=False)
-parser.add_argument("-k", "--pdb_H_L_csv", help="abspath to csv key containing names of pdb files \
-                     (without .pdb), and H & L chain IDs", default=None)
-parser.add_argument("-i", "--pdb_folder_path", help="abspath to folder containing pdb files", default=None)
-parser.add_argument("-o", "--out_path", help="abspath to csv file where predictions will be saved", default=None)
-parser.add_argument("-w", "--weights", help="abspath to weights to be used by network (default is pre-trained)", default=None)
+parser.add_argument("-e", "--example", help="run Paragraph using default weights on example data",
+                    action='store_true', default=False)
+parser.add_argument("-k", "--pdb_H_L_csv", help="abspath to csv key containing names of pdb files (without .pdb), and H & L chain IDs",
+                    default=None)
+parser.add_argument("-i", "--pdb_folder_path", help="abspath to folder containing pdb files",
+                    default=None)
+parser.add_argument("-o", "--out_path", help="abspath to csv file where predictions will be saved",
+                    default=None)
+parser.add_argument("-w", "--weights", help="abspath to weights to be used by network (default is pre-trained paired)",
+                    default=None)
+parser.add_argument("-H", "--heavy", help="use pre-trained weights for network trained on heavy chain only \
+                    (ensure key does not have L chain e.g. 4edw,H,)",
+                    action='store_true', default=False)
+parser.add_argument("-L", "--light", help="use pre-trained weights for network trained on light chain only \
+                    (ensure key does not have H chain e.g. 4edw,,L)",
+                    action='store_true', default=False)
 args = parser.parse_args()
 
 
@@ -71,7 +87,14 @@ def main():
     trained_model_path = os.path.join(src_dir, "trained_model")
     
     # use pre-trained weights if no additonal ones given
-    saved_model_path = os.path.join(trained_model_path, "pretrained_weights.pt") if args.weights is None else args.weights
+    if (args.heavy and args.light) or (args.heavy and args.weights) or (args.light and args.weights):
+        raise ValueError("Only one of 'weights', 'heavy', or 'light' may be given at one time")
+    elif args.heavy:
+        saved_model_path = os.path.join(trained_model_path, "pretrained_weights_heavy.pt")
+    elif args.light:
+        saved_model_path = os.path.join(trained_model_path, "pretrained_weights_light.pt")
+    else:
+        saved_model_path = os.path.join(trained_model_path, "pretrained_weights.pt") if args.weights is None else args.weights
     
     # run example
     if example and len(sys.argv) > 2:
