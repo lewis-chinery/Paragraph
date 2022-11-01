@@ -50,9 +50,9 @@ def evaluate_model(model, dataloader, device):
                        z[i][j],
                        torch.sigmoid(pred)[j][i][0].item()]
                 try:
-                    detailed_record = np.append(detailed_record, [row], axis=0)
+                    detailed_record.append(row)
                 except UnboundLocalError:
-                    detailed_record = np.array([row], dtype=object)
+                    detailed_record = [row]
                     
     # convert ndarray to df for easier viewing
     detailed_record_df = pd.DataFrame(detailed_record,
