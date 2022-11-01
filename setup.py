@@ -19,5 +19,6 @@ setup(
         'einops>=0.4',
         'scipy>=1.8',
         'torch>=1.11',
+        'tqdm'
     ],
 )

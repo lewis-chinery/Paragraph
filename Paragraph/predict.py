@@ -4,6 +4,7 @@ import time
 import numpy as np
 import pandas as pd
 from torch.utils.data import DataLoader
+from tqdm import tqdm
 
 from Paragraph.dataset import ParagraphDataset
 from Paragraph.model import EGNN_Model
@@ -23,7 +24,7 @@ def evaluate_model(model, dataloader, device):
     '''
     
     # loop over batches in test set
-    for _, ((feats, coors, edges), (pdb_code, AAs, AtomNum, chain, chain_type, IMGT, x, y, z)) in enumerate(dataloader):
+    for _, ((feats, coors, edges), (pdb_code, AAs, AtomNum, chain, chain_type, IMGT, x, y, z)) in tqdm(enumerate(dataloader)):
 
         feats = feats.to(device)
         coors = coors.to(device)

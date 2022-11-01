@@ -125,12 +125,15 @@ def main():
         saved_net.load_state_dict(torch.load(saved_model_path, map_location=torch.device('cpu')))
     saved_net = saved_net.to(device)
     
-    # dataloader    
+    # dataloader
+    start_time = time.time()
     dl = get_dataloader(pdb_H_L_csv, pdb_folder_path)
+    print("\nRunning Paragraph on:\n - {:,} structures".format(dl.__len__()))
+    print("\nStarting evaluation at:\n - {}".format(time.ctime(start_time)))
     
     # predict
     print("\nEvaluating using weight file:\n - {}\n".format(saved_model_path))#.split("Paragraph")[-1]))
-    start_time = time.time()
+    
     detailed_record_df = evaluate_model(model = saved_net,dataloader = dl, device = device)
     
     # save results
