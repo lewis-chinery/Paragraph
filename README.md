@@ -27,6 +27,10 @@ If you are having issues installing, try upgrading pip: *pip install --upgrade p
 Paragraph uses Python v3.8.3.
 
 
+## Stats
+
+Paragraph's predictions take less than 0.1s per structure. 10,000 structures take approximately 10 minutes to process and the resulting output file is ~50MB.
+
 
 ## Usage
 
@@ -49,6 +53,8 @@ Paragraph --pdb_H_L_csv     /your/abspath/to/Paragraph/Paragraph/example/pdb_H_L
 
 An example jupyter notebook is provided for those wishing to integrate Paragraph into their python workflow. Examples of correctly formatted input data are also provided. PDB files should be IMGT numbered.
 
+## Output
+
 Paragraph outputs a csv file containing predicted probabilities for each residue belonging to the paratope. The output csv is formatted as below. The atom number and 3D coordinates are of the C-alpha atoms for each residue.
 
 In order to recapitulate the true number of binding residues observed in the CDR loops plus two extra residues on either end, we recommend using a classifier cut-off of 0.734 on Paragraph's predictions.
@@ -62,6 +68,7 @@ In order to recapitulate the true number of binding residues observed in the CDR
 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
 
 </div>
+
 
 ## Citation
 
