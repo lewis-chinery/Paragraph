@@ -54,7 +54,7 @@ def replace_B_factors_with_paratope_predictions(pdb_file, predictions_csv, inpla
             # check if line of df is present in 
             else:
                 chain, imgt, temp = breakdown_line(line)        
-                df_match = df_pred[(df_pred["chain_id"]==chain) & (df_pred["IMGT"]==imgt)].reset_index(drop=True)
+                df_match = df_pred[(df_pred["chain_id"]==chain) & (df_pred["IMGT"].astype(str)==imgt)].reset_index(drop=True)
                 # do have paratope predictions for that residue
                 if not df_match.empty:
                     pred = df_match["pred_2dp"][0]
