@@ -74,9 +74,9 @@ In order to recapitulate the true number of binding residues observed in the CDR
 
 ```
 @article{Chinery2022,
-  title={Paragraph - Antibody paratope prediction using Graph Neural Networks with minimal feature vectors},
+  title={Paragraph - antibody paratope prediction using graph neural networks with minimal feature vectors},
   author={Lewis Chinery, Newton Wahome, Iain H. Moal, and Charlotte M. Deane},
-  journal={bioRxiv},
-  year={2022}
+  journal={Bioinformatics},
+  year={2023}
 }
 ```
